@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from 'react';
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -41,7 +42,9 @@ export default function RootLayout({
         <AuthProvider>
           {/* <ScrollToTop />
           {/* <div className="min-h-screen bg-white flex flex-col font-sans"> */}
+          <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
+          </Suspense>
           {/* </div> */}
           {children}
           <Footer />
