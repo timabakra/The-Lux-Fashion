@@ -2,10 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "../../../lib/mongodb";
 import { ObjectId } from "mongodb";
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+// Define the type for the context to reuse it
+type RouteContext = {
+  params: Promise<{ id: string }>;
+};
+
+export async function GET(req: NextRequest, { params }: RouteContext) {
   try {
     const db = await getDb();
-    await params; // Ensure params is accessed to avoid unused variable warning
+    // Await the params to get the id
     const { id } = await params;
 
     let product = null;
@@ -23,11 +28,13 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, { params }: RouteContext) {
   try {
     const db = await getDb();
     const body = await req.json();
-    const { id } = params;
+    // Await the params to get the id
+    const { id } = await params;
+    
     delete body._id;
 
     const filter = ObjectId.isValid(id) ? { _id: new ObjectId(id) } : { product_id: id };
@@ -39,10 +46,12 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: RouteContext) {
   try {
     const db = await getDb();
-    const { id } = params;
+    // Await the params to get the id
+    const { id } = await params;
+    
     const filter = ObjectId.isValid(id) ? { _id: new ObjectId(id) } : { product_id: id };
     await db.collection("products").deleteOne(filter);
     return NextResponse.json({ message: "Product deleted" });
