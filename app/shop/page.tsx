@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-// Replace react-router-dom with next/navigation and next/link
+import { useState, useEffect, useRef, useCallback, Suspense } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import ProductCard from "../components/ProductCard";
@@ -11,7 +10,8 @@ import { ChevronDown, X, Loader2 } from "lucide-react";
 import { cn } from "../lib/utils";
 import { DESIGNERS_BY_CATEGORY, ALL_CATEGORIES } from "../constants";
 
-export default function Shop() {
+// 1. The main logic component
+function ShopContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -23,7 +23,7 @@ export default function Shop() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   
-  // Read params using Next.js useSearchParams
+  // Read params
   const category = searchParams.get("category") || "All";
   const brand = searchParams.get("brand") || "All";
   const search = searchParams.get("search") || "";
@@ -99,7 +99,6 @@ export default function Shop() {
     fetchItems();
   }, [page, category, brand, search, sortBy]);
 
-  // Updated updateParams for Next.js navigation
   const updateParams = (updates: Record<string, string>) => {
     const params = new URLSearchParams(searchParams.toString());
     
@@ -111,7 +110,6 @@ export default function Shop() {
       }
     });
 
-    // router.push updates the URL, which triggers the useEffect reading searchParams
     router.push(`${pathname}?${params.toString()}`);
   };
 
@@ -236,5 +234,19 @@ export default function Shop() {
         </div>
       )}
     </div>
+  );
+}
+
+// 2. The default export that wraps the content in Suspense
+export default function Shop() {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col items-center justify-center min-h-screen py-32">
+        <Loader2 className="animate-spin text-gold mb-4" size={48} />
+        <p className="text-gray-500 animate-pulse">Loading Collection...</p>
+      </div>
+    }>
+      <ShopContent />
+    </Suspense>
   );
 }
