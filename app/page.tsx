@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Hero from "./components/Hero";
 import ProductCard from "./components/ProductCard";
 import TrustBadges from "./components/TrustBadges";
-import Newsletter from "./components/Newsletter";
 import { Product } from "./types";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -152,7 +151,6 @@ export default function Home() {
         </section>
 
         <TrustBadges />
-        <Newsletter />
       </div>
     </>
   );
