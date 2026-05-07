@@ -14,7 +14,7 @@ import { containsChinese } from "../../lib/utils";
 export default function ProductDetail() {
   const params = useParams();
   const id = params?.id as string;
-
+  const productFullLink = `https://theluxfashion.com/product/${id}`;
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState("");
@@ -157,7 +157,7 @@ export default function ProductDetail() {
           </div>
 
           <a
-            href={`https://wa.me/16513564620?text=${encodeURIComponent(`Hello, I'm interested in the ${product.title} (${product.designer?.name}) ${selectedSize ? `in size ${selectedSize}` : ''}. Could you please provide the price and ordering details?`)}`}
+            href={`https://wa.me/16513564620?text=${encodeURIComponent(`Hello, I'm interested in the ${product.title} (${product.designer?.name}) . Could you please provide the price and ordering details? Here is the product link: ${productFullLink}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full bg-black text-white py-5 text-sm font-bold uppercase tracking-widest hover:bg-gold transition-colors mb-8 rounded-xl flex items-center justify-center"

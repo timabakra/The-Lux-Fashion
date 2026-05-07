@@ -23,7 +23,7 @@ export default function Hero() {
             transition={{ delay: 0.2 }}
             className="text-white text-sm font-bold uppercase tracking-[0.3em] mb-4"
           >
-            Your Personal Shopper in the US 🇺🇸
+            Your Style, Our Shopping Expertise
           </motion.p>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
