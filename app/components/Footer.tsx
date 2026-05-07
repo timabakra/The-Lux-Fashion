@@ -9,13 +9,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center space-x-2 group mb-3">
-              <div className="bg-black p-1.5 rounded-lg transition-transform group-hover:scale-110">
-                <Image src="/lux-resized.jpg" alt="The Lux Fashion" width={20} height={20} className="text-gold" />
+              <div className="p-1.5 rounded-lg transition-transform group-hover:scale-110">
+                <Image src="/lux-resized.jpg" alt="The Lux Fashion" width={60} height={50} className="text-gold rounded-full font-bold h-auto" priority />
               </div>
-              <span className="text-xl font-bold tracking-[0.1em] text-black">THE LUX FASHION</span>
+              <span className="font-bold tracking-[0.1em] text-black">THE LUX FASHION</span>
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
-              The Lux Fashion 🛍️. Your Personal Shopper in the US 🇺🇸. Trendy fits, shoes & must-haves. We find it. You wear it. ✨. Order via DM👇
+              The Lux Fashion 🛍️. Your Global Personal Shopper. Trendy fits, shoes & must-haves. We find it. You wear it. Contact for Prices.
             </p>
           </div>
           

@@ -50,8 +50,8 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="bg-black p-1.5 rounded-lg transition-transform group-hover:scale-110">
-                <Image src="/lux-resized.jpg" alt="The Lux Fashion" width={30} height={30} className="text-gold" />
+              <div className="p-1.5 rounded-lg transition-transform group-hover:scale-110">
+                <Image src="/lux-resized.jpg" alt="The Lux Fashion" width={60} height={50} className="text-gold rounded-full font-bold h-auto" priority />
               </div>
               <span className="text-xl font-bold tracking-[0.2em] text-black">THE LUX FASHION</span>
             </Link>
